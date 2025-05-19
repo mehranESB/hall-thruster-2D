@@ -57,10 +57,21 @@ classdef SolverB
                 "Levels",20);
             hold on
             pdegplot(obj.SysGeometry);
-            xlabel("r")
-            ylabel("z")
+            xlabel("r(m)", "FontSize", 12)
+            ylabel("z(m)", "FontSize", 12)
             title("magnetic potential and magnetic field")
 
+            % color bar unit
+            cb = colorbar;
+            cb.Label.String = 'norm of A-potential (T·m)';
+            cb.Label.FontSize = 12;
+            
+            % Dummy plot handles for legend
+            h1 = patch(NaN, NaN, 'b', 'FaceAlpha', 0.3, 'DisplayName', 'Norm of Magnetic Potential(A)');  % color map
+            h2 = plot(NaN, NaN, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Equipotential Lines of A-norm'); % contour lines
+            h3 = quiver(0, 0, 0, 0, 'r', 'DisplayName', 'Magnetic Field');             % vector field
+
+            legend([h1 h2 h3], 'Location', 'northeast');
         end
     end
     

@@ -52,10 +52,21 @@ classdef SolverE
                 "Levels",20);
             hold on
             pdegplot(obj.SysGeometry);
-            xlabel("r")
-            ylabel("z")
+            xlabel("r(m)", "FontSize", 12)
+            ylabel("z(m)", "FontSize", 12)
             title("electric potential and electric field")
 
+            % color bar unit
+            cb = colorbar;
+            cb.Label.String = 'E-potential (V)';
+            cb.Label.FontSize = 12;
+
+            % Dummy plot handles for legend
+            h1 = patch(NaN, NaN, 'b', 'FaceAlpha', 0.3, 'DisplayName', 'Electric Potential');  % color map
+            h2 = plot(NaN, NaN, 'k-', 'LineWidth', 1.5, 'DisplayName', 'Equipotential Lines'); % contour lines
+            h3 = quiver(0, 0, 0, 0, 'r', 'DisplayName', 'Electric Field');             % vector field
+
+            legend([h1 h2 h3], 'Location', 'northeast');
         end
 
     end
